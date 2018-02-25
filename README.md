@@ -1,5 +1,4 @@
 # Medical diagnosis forum
-
 This is a medical diagnosis forum RESTFUL API. It can be used by patients to ask doctors for help and diagnose the medical situation.
 
 At this step, we have designed the database and implemented the basic calls to the database.
@@ -50,7 +49,6 @@ ENGINE.clear()
 ```
 
 To execute queries
-
 ```python
 # get connection instance
 con = self.connection.con
