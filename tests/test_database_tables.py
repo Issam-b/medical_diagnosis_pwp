@@ -11,6 +11,24 @@ from .utils import ENGINE, test_table_populated, test_table_schema
 from .utils import USERS_PROFILE_TABLE, USERS_TABLE, INITIAL_USERS_COUNT
 from .utils import MESSAGES_TABLE, DIAGNOSIS_TABLE
 
+# Import the database of medical_forum
+from medical_forum import database
+
+# Database file path to be used for testing only and create database instance
+DB_PATH = 'db/medical_forum_data_test.db'
+ENGINE = database.Engine(DB_PATH)
+
+# Tables content initial sizes
+INITIAL_MESSAGES_COUNT = 19
+INITIAL_USERS_COUNT = 25
+INITIAL_USERS_PROFILE_COUNT = 25
+INITIAL_DIAGNOSIS_COUNT = 10
+
+# Tables names
+USERS_TABLE = 'users'
+USERS_PROFILE_TABLE = 'users_profile'
+MESSAGES_TABLE = 'messages'
+DIAGNOSIS_TABLE = 'diagnosis'
 
 # Tables names, types and foreign keys constants
 # User table
