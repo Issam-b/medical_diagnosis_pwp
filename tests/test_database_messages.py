@@ -15,7 +15,6 @@ from .utils import MESSAGES_TABLE, INITIAL_MESSAGES_COUNT
 MESSAGE_1_ID = 'msg-1'
 MESSAGE_1 = {
     'message_id': 'msg-1',
-    'user_id': 1,
     'reply_to': None,  # this means it's a new message or medical case
     'title': 'Soreness in the throat',
     'body': ("Hi, I have this soreness in my throat. It started just yesterday and its "
@@ -28,7 +27,6 @@ MESSAGE_2_ID = 'msg-8'
 MESSAGE_DUMMY_USERNAME = 'Dizzy'
 MESSAGE_2 = {
     'message_id': 'msg-8',
-    'user_id': 18,
     'reply_to': 'msg-1',  # message reply to MESSAGE_1
     'title': 'Dizziness when running',
     'body': ("Hi, I need help with this issue real quick. I get very dizzy when I run for "
@@ -39,7 +37,6 @@ MESSAGE_2 = {
 }
 
 MESSAGE_1_MODIFIED = {'message_id': MESSAGE_1_ID,
-                      'user_id': 1,
                       'reply_to': None,
                       'title': 'new title',
                       'body': 'new body',

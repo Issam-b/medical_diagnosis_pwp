@@ -58,6 +58,7 @@ class Messages(Resource):
             item.add_control("profile", href=hyper_const.FORUM_MESSAGE_PROFILE)
             items.append(item)
 
+        # RENDER
         return Response(json.dumps(envelope), 200, mimetype=hyper_const.MASON + ";" +
                         hyper_const.FORUM_MESSAGE_PROFILE)
 

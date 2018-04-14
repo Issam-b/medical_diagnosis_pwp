@@ -137,10 +137,10 @@ class Users(Resource):
         try:
             speciality = request_body["speciality"]
             user_type = request_body["user_type"]
+            reg_date = request_body["reg_date"]
             firstname = request_body["firstname"]
             lastname = request_body["lastname"]
             work_address = request_body["work_address"]
-
         except KeyError:
             return create_error_response(400, "Wrong request format",
                                          "Be sure to include all mandatory properties")
@@ -212,6 +212,7 @@ class User(Resource):
                 }
         """
 
+        # PERFORM OPERATIONS
         user_db = g.con.get_user(username)
         if not user_db:
             return create_error_response(

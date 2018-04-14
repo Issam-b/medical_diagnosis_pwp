@@ -42,7 +42,8 @@ MESSAGES_TABLE_FK = [('users', 'user_id', 'user_id'), ('users', 'username', 'use
 DIAGNOSIS_TABLE_NAMES = ['diagnosis_id', 'user_id',
                          'message_id', 'disease', 'diagnosis_description']
 DIAGNOSIS_TABLE_TYPES = ['INTEGER', 'INTEGER', 'INTEGER', 'TEXT', 'TEXT']
-DIAGNOSIS_TABLE_FK = [('messages', 'message_id', 'message_id'), ('users', 'user_id', 'user_id')]
+DIAGNOSIS_TABLE_FK = [
+    ('messages', 'message_id', 'message_id'), ('users', 'user_id', 'user_id')]
 
 
 class TablesCreationTestCase(unittest.TestCase):
