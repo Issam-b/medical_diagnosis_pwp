@@ -36,7 +36,6 @@ class Diagnoses(Resource):
          * The attribute user_id is obtained from the column diagnoses.user_id
         """
 
-        # Extract diagnoses from database
         diagnoses_db = g.con.get_diagnoses()
 
         envelope = forum_obj.ForumObject()
@@ -56,7 +55,6 @@ class Diagnoses(Resource):
                 "profile", href=hyper_const.FORUM_DIAGNOSIS_PROFILE)
             items.append(item)
 
-        # RENDER
         return Response(json.dumps(envelope), 200, mimetype=hyper_const.MASON + ";" +
                         hyper_const.FORUM_DIAGNOSIS_PROFILE)
 
@@ -272,6 +270,10 @@ class Diagnosis(Resource):
 
         user_id = diagnosis_db.get("user_id")
         message_id = diagnosis_db.get("message_id")
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce2b86b... add non-existing user tests
         envelope = forum_obj.ForumObject(
             disease=diagnosis_db["disease"],
             diagnosis_description=diagnosis_db["diagnosis_description"],
