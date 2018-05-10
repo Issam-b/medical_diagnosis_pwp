@@ -1,7 +1,12 @@
 /* Makeshift CSS Reset */
 
 body {
+<<<<<<< HEAD
     padding: 1% 2% 5% 2%;
+=======
+    padding: 5%;
+    padding-bottom: 10%;
+>>>>>>> cb818c3... get users, one user, user profile, add user
 }
 
 #mainContent {
