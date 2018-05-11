@@ -16,7 +16,7 @@ class Diagnoses(Resource):
     Resource Diagnoses implementation
     """
 
-    def get(self, user_id=None):
+    def get(self):
         """
         Get all diagnoses.
 
@@ -36,8 +36,7 @@ class Diagnoses(Resource):
          * The attribute user_id is obtained from the column diagnoses.user_id
         """
 
-        diagnoses_db = g.con.get_diagnoses(user_id)
-        print("serving for user_id: " + str(user_id))
+        diagnoses_db = g.con.get_diagnoses()
 
         envelope = forum_obj.ForumObject()
         envelope.add_namespace("medical_forum", hyper_const.LINK_RELATIONS_URL)

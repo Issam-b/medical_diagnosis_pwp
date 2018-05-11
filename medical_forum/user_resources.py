@@ -212,7 +212,6 @@ class User(Resource):
                 }
         """
 
-        # PERFORM OPERATIONS
         user_db = g.con.get_user(username)
         if not user_db:
             return create_error_response(

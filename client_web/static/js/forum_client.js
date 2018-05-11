@@ -195,15 +195,18 @@ function getUsers(apiurl) {
                         alert('Could not fetch form schema.  Please, try again');
                     });
             }
-        })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            if (DEBUG_ENABLE) {
-                console.log(
-                    'RECEIVED ERROR: textStatus:', textStatus,
-                    ';error:', errorThrown);
-            }
-            alert('Could not fetch the list of users.  Please, try again');
-        });
+            alert('Could not fetch form schema.  Please, try again');
+          });
+      }
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      if (DEBUG_ENABLE) {
+        console.log(
+          'RECEIVED ERROR: textStatus:', textStatus,
+          ';error:', errorThrown);
+      }
+      alert('Could not fetch the list of users.  Please, try again');
+    });
 }
 
 /**
@@ -1036,10 +1039,10 @@ function ClearSpecialityForNonDoctor(envelope) {
 }
 
 function ClearSpecialityForNonDoctor(envelope) {
-    if (envelope['user_type'] == 0) {
-        console.log("changing the speciality");
-        envelope['speciality'] = "";
-    }
+  if (envelope['user_type'] == 0) {
+    console.log('changing the speciality');
+    envelope['speciality'] = '';
+  }
 }
 /**
  * Add a new .message HTML element in the to the #messages_list <div> element.
