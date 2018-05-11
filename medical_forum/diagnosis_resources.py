@@ -16,7 +16,7 @@ class Diagnoses(Resource):
     Resource Diagnoses implementation
     """
 
-    def get(self):
+    def get(self, user_id=None):
         """
         Get all diagnoses.
 
@@ -36,7 +36,8 @@ class Diagnoses(Resource):
          * The attribute user_id is obtained from the column diagnoses.user_id
         """
 
-        diagnoses_db = g.con.get_diagnoses()
+        diagnoses_db = g.con.get_diagnoses(user_id)
+        print("serving for user_id: " + str(user_id))
 
         envelope = forum_obj.ForumObject()
         envelope.add_namespace("medical_forum", hyper_const.LINK_RELATIONS_URL)
@@ -262,6 +263,7 @@ class Diagnosis(Resource):
         """
 
         diagnosis_db = g.con.get_diagnosis(diagnosis_id)
+        print("diagnosis_id: " + str(diagnosis_id))
         if not diagnosis_db:
             abort(404, diagnosis="There is no a diagnosis with id %s" % diagnosis_id,
                   resource_type="Diagnosis",
@@ -270,10 +272,6 @@ class Diagnosis(Resource):
 
         user_id = diagnosis_db.get("user_id")
         message_id = diagnosis_db.get("message_id")
-<<<<<<< HEAD
-=======
-
->>>>>>> ce2b86b... add non-existing user tests
         envelope = forum_obj.ForumObject(
             disease=diagnosis_db["disease"],
             diagnosis_description=diagnosis_db["diagnosis_description"],

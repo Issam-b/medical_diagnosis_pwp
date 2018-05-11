@@ -111,7 +111,15 @@ function getDiagnoses(apiurl) {
  *#appendUserToList} to append the user to the list. Each user is an anchor
  *pointing to the respective user url. ONERROR => Show an alert to the user.
  *
- * @param {string} [apiurl = ENTRYPOINT] - The url of the Users instance.
+ * Sends an AJAX GET request to retrive the list of all the diagnoses of the
+ *application
+ *
+ * ONSUCCESS=> Show users in the #user_list.
+ *             After processing the response it utilizes the method {@link
+ *#appendUserToList} to append the user to the list. Each user is an anchor
+ *pointing to the respective user url. ONERROR => Show an alert to the user.
+ *
+ * @param {string} [apiurl = ENTRYPOINT] - The url of the Diagnoses instance.
  **/
 function getUsers(apiurl) {
   apiurl = apiurl || ENTRYPOINT_USERS;
@@ -167,7 +175,36 @@ function getUsers(apiurl) {
       });
 }
 
-/*** RELATIONS USED IN MESSAGES AND USERS PROFILES ***/
+            if (create_ctrl.schema) {
+                createFormFromSchema(
+                    create_ctrl.href, create_ctrl.schema, 'new_user_form');
+            } else if (create_ctrl.schemaUrl) {
+                $.ajax({
+                        url: create_ctrl.schemaUrl,
+                        dataType: DEFAULT_DATATYPE
+                    })
+                    .done(function (data, textStatus, jqXHR) {
+                        createFormFromSchema(create_ctrl.href, data, 'new_user_form');
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        if (DEBUG_ENABLE) {
+                            console.log(
+                                'RECEIVED ERROR: textStatus:', textStatus,
+                                ';error:', errorThrown);
+                        }
+                        alert('Could not fetch form schema.  Please, try again');
+                    });
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            if (DEBUG_ENABLE) {
+                console.log(
+                    'RECEIVED ERROR: textStatus:', textStatus,
+                    ';error:', errorThrown);
+            }
+            alert('Could not fetch the list of users.  Please, try again');
+        });
+}
 
 /**
  * This client does not support this functionality.
@@ -998,6 +1035,12 @@ function ClearSpecialityForNonDoctor(envelope) {
   }
 }
 
+function ClearSpecialityForNonDoctor(envelope) {
+    if (envelope['user_type'] == 0) {
+        console.log("changing the speciality");
+        envelope['speciality'] = "";
+    }
+}
 /**
  * Add a new .message HTML element in the to the #messages_list <div> element.
  *
