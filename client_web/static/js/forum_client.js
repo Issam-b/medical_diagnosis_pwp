@@ -1441,6 +1441,10 @@ function handleshowNewDaignosisForm(event) {
                            .collapse('toggle');
 }
 
+function handleshowNewDaignosisForm(event) {
+
+}
+
 /**** END BUTTON HANDLERS ****/
 
 // This method is executed when the webpage is loaded.
