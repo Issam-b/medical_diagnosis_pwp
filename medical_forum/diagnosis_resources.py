@@ -262,7 +262,6 @@ class Diagnosis(Resource):
         """
 
         diagnosis_db = g.con.get_diagnosis(diagnosis_id)
-        print("diagnosis_id: " + str(diagnosis_id))
         if not diagnosis_db:
             abort(404, diagnosis="There is no a diagnosis with id %s" % diagnosis_id,
                   resource_type="Diagnosis",
