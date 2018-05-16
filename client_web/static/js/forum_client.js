@@ -1442,7 +1442,13 @@ function handleshowNewDaignosisForm(event) {
 }
 
 function handleshowNewDaignosisForm(event) {
-
+    console.log('toggle');
+    $new_diagnosis_div = $(this)
+        .parent()
+        .parent()
+        .parent()
+        .find('.diagnosis-form')
+        .collapse('toggle');
 }
 
 /**** END BUTTON HANDLERS ****/
