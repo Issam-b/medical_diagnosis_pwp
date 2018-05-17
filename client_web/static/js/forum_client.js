@@ -205,34 +205,32 @@ function getUsers(apiurl) {
             var create_ctrl = data['@controls']['medical_forum:add-user']
 
             if (create_ctrl.schema) {
-                createFormFromSchema(
-                    create_ctrl.href, create_ctrl.schema, 'new_user_form');
-            } else if (create_ctrl.schemaUrl) {
-                $.ajax({
-                        url: create_ctrl.schemaUrl,
-                        dataType: DEFAULT_DATATYPE
-                    })
-                    .done(function (data, textStatus, jqXHR) {
-                        createFormFromSchema(create_ctrl.href, data, 'new_user_form');
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        if (DEBUG_ENABLE) {
-                            console.log(
-                                'RECEIVED ERROR: textStatus:', textStatus,
-                                ';error:', errorThrown);
-                        }
-                        alert('Could not fetch form schema.  Please, try again');
-                    });
-            }
-        })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            if (DEBUG_ENABLE) {
-                console.log(
-                    'RECEIVED ERROR: textStatus:', textStatus,
-                    ';error:', errorThrown);
-            }
-            alert('Could not fetch the list of users.  Please, try again');
-        });
+          createFormFromSchema(
+              create_ctrl.href, create_ctrl.schema, 'new_user_form');
+        }
+        else if (create_ctrl.schemaUrl) {
+          $.ajax({url: create_ctrl.schemaUrl, dataType: DEFAULT_DATATYPE})
+              .done(function(data, textStatus, jqXHR) {
+                createFormFromSchema(create_ctrl.href, data, 'new_user_form');
+              })
+              .fail(function(jqXHR, textStatus, errorThrown) {
+                if (DEBUG_ENABLE) {
+                  console.log(
+                      'RECEIVED ERROR: textStatus:', textStatus,
+                      ';error:', errorThrown);
+                }
+                alert('Could not fetch form schema.  Please, try again');
+              });
+        }
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        if (DEBUG_ENABLE) {
+          console.log(
+              'RECEIVED ERROR: textStatus:', textStatus,
+              ';error:', errorThrown);
+        }
+        alert('Could not fetch the list of users.  Please, try again');
+      });
 }
 
 /**
@@ -244,7 +242,7 @@ function getUsers(apiurl) {
  * // TODO: THE CLIENT DOES NOT KNOW HOW TO HANDLE LIST OF MESSAGES
  **/
 function messages_all(apiurl) {
-    return;
+  return;
 }
 
 /*** FUNCTIONS FOR MESSAGE PROFILE ***/
@@ -1178,13 +1176,13 @@ function appendDiagnosisToList(data) {
  *
  **/
 function prepareUserDataVisualization() {
-    $('#userProfile .form_content').empty();
-    $('#userData .commands input[type=\'button\']').hide();
-    $('#userData input[type=\'text\']').val('??');
-    $('#messages_list').empty();
-    $('#newUser').hide();
-    $('#userData').show();
-    $('#mainContent').show();
+  $('#userProfile .form_content').empty();
+  $('#userData .commands input[type=\'button\']').hide();
+  $('#userData input[type=\'text\']').val('??');
+  $('#messages_list').empty();
+  $('#newUser').hide();
+  $('#userData').show();
+  $('#mainContent').show();
 }
 
 /**
@@ -1193,13 +1191,13 @@ function prepareUserDataVisualization() {
  * also shows the #createUser button.
  **/
 function showNewUserForm() {
-    deselectUser();
-    $('#userData').hide();
-    var form = $('#new_user_form')[0];
-    form.reset();
-    $('input[type=\'button\']', form).show();
-    $('#newUser').show();
-    $('#mainContent').show();
+  deselectUser();
+  $('#userData').hide();
+  var form = $('#new_user_form')[0];
+  form.reset();
+  $('input[type=\'button\']', form).show();
+  $('#newUser').show();
+  $('#mainContent').show();
 }
 
 /**
@@ -1207,9 +1205,9 @@ function showNewUserForm() {
  *#doctors_list and go back to the initial state by hiding the "#mainContent".
  **/
 function deselectUser() {
-    $('#patients_list li.active').removeClass('active');
-    $('#doctors_list li.active').removeClass('active');
-    $('#mainContent').hide();
+  $('#patients_list li.active').removeClass('active');
+  $('#doctors_list li.active').removeClass('active');
+  $('#mainContent').hide();
 }
 
 /**
@@ -1217,8 +1215,8 @@ function deselectUser() {
  * Internally it makes click on the href of the active user.
  **/
 function reloadUserData() {
-    $('#patients_list li.active a').click();
-    $('#doctors_list li.active a').click();
+  $('#patients_list li.active a').click();
+  $('#doctors_list li.active a').click();
 }
 
 /**
@@ -1249,11 +1247,11 @@ function getDate(timestamp) {
  *#showNewUserForm}
  **/
 function handleShowUserForm(event) {
-    if (DEBUG_ENABLE) {
-        console.log('Triggered handleShowUserForm');
-    }
-    showNewUserForm();
-    return false;
+  if (DEBUG_ENABLE) {
+    console.log('Triggered handleShowUserForm');
+  }
+  showNewUserForm();
+  return false;
 }
 
 /**
@@ -1306,20 +1304,20 @@ function handleCreateUser(event) {
  *current user)
  **/
 function handleGetUser(event) {
-    if (DEBUG_ENABLE) {
-        console.log('Triggered handleGetUser');
-    }
-    event.preventDefault();
+  if (DEBUG_ENABLE) {
+    console.log('Triggered handleGetUser');
+  }
+  event.preventDefault();
 
-    $('#patients_list li.active').removeClass('active');
-    $('#doctors_list li.active').removeClass('active');
-    $(this).parent().addClass('active');
+  $('#patients_list li.active').removeClass('active');
+  $('#doctors_list li.active').removeClass('active');
+  $(this).parent().addClass('active');
 
-    prepareUserDataVisualization();
-    var href = ($(this)).attr('href');
-    get_user(href);
+  prepareUserDataVisualization();
+  var href = ($(this)).attr('href');
+  get_user(href);
 
-    return false;
+  return false;
 }
 
 /**
@@ -1442,13 +1440,12 @@ function handleshowNewDaignosisForm(event) {
 }
 
 function handleshowNewDaignosisForm(event) {
-    console.log('toggle');
-    $new_diagnosis_div = $(this)
-        .parent()
-        .parent()
-        .parent()
-        .find('.diagnosis-form')
-        .collapse('toggle');
+  $new_diagnosis_div = $(this)
+                           .parent()
+                           .parent()
+                           .parent()
+                           .find('.diagnosis-form')
+                           .collapse('toggle');
 }
 
 /**** END BUTTON HANDLERS ****/

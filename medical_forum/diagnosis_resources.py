@@ -37,7 +37,6 @@ class Diagnoses(Resource):
         """
 
         diagnoses_db = g.con.get_diagnoses()
-        print('dgs default')
 
         envelope = forum_obj.ForumObject()
         envelope.add_namespace("medical_forum", hyper_const.LINK_RELATIONS_URL)
